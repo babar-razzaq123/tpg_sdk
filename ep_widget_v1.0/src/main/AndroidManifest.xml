@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="telenor.com.ep_v1_sdk" >
+
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+            android:supportsRtl="true"
+            android:screenOrientation="portrait"
+            android:usesCleartextTraffic="true">
+        <activity android:name="telenor.com.ep_v1_sdk.ui.activities.EasypayPaymentMethod"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="telenor.com.ep_v1_sdk.ui.activities.EasypayPaymentFeedback"
+                  android:theme="@style/AppTheme.NoActionBar"
+                    android:windowSoftInputMode="adjustNothing"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="telenor.com.ep_v1_sdk.ui.activities.EasypayPaymentForm"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:windowSoftInputMode="adjustNothing"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="telenor.com.ep_v1_sdk.ui.activities.EasypayPaymentWebView"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:windowSoftInputMode="adjustResize"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="telenor.com.ep_v1_sdk.ui.activities.EasypayPaymentConfirmation"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:windowSoftInputMode="adjustNothing"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity android:name="telenor.com.ep_v1_sdk.ui.activities.EasypayPaymentOTP"
+                  android:theme="@style/AppTheme.NoActionBar"
+                  android:windowSoftInputMode="adjustNothing"
+                android:screenOrientation="portrait">
+        </activity>
+    </application>
+
+</manifest>

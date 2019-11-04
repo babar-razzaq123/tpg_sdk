@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EasyPaySDK</string>
+
+
+    <string name="amount">Amount</string>
+    <string name="storeId">Store ID</string>
+    <string name="storeName">Store Name</string>
+    <string name="secretKey">Secret Key</string>
+    <string name="orderRefNum">Order ID</string>
+    <string name="expiryDate">Token expiry date (yyyyMMdd hhmmss)</string>
+    <string name="email">Email Address</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="bankIdentifierNum">Bank Identification Number</string>
+    <string name="proceedCheckout">Proceed</string>
+</resources>

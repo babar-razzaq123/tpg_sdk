@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center">
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+    <include layout="@layout/ll_top_view" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/bggrey"
+            android:layout_weight="1">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_50sdp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/payment_status_bg"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                    <ImageView
+                            android:id="@+id/imgIcon"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:src="@drawable/ic_success"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_gravity="center"/>
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginBottom="@dimen/_2sdp"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/titleStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                style="@style/selectedText"
+                                android:text="@string/awesome"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:textSize="@dimen/_14ssp"/>
+
+                        <TextView
+                                android:id="@+id/paymentStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_5sdp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                style="@style/unselectedText"
+                                android:text="@string/successPayment"
+                                android:paddingTop="@dimen/_1sdp"
+                                android:textSize="@dimen/_12ssp"/>
+                    </LinearLayout>
+
+                    <ImageView
+                            android:id="@+id/imgIconEasypaisa"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/logo"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"/>
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/ll_payment">
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2sdp"
+                            android:background="@drawable/line_light_grey"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"/>
+                    <TextView
+                            android:id="@+id/titleSummary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:textAlignment="center"
+                            style="@style/unselectedText"
+                            android:text="@string/paymentSummary"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:textSize="@dimen/_11ssp"/>
+
+
+                    <LinearLayout
+                            android:id="@+id/ll_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                style="@style/selectedText"
+                                android:text="@string/pkr"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:textAlignment="center"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:textSize="@dimen/_13ssp"/>
+
+                        <TextView
+                                android:id="@+id/totalAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                style="@style/selectedText"
+                                android:text="--"
+                                android:textAlignment="center"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:textSize="@dimen/_20ssp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/ll_transactionId"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/transactionIdTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                android:text="@string/transactionId"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:textAlignment="center"
+                                android:paddingTop="@dimen/_5sdp"
+                                style="@style/unselectedText"
+                                android:textSize="@dimen/_11ssp"/>
+
+                        <TextView
+                                android:id="@+id/transactionId"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                android:text="--"
+                                style="@style/unselectedText"
+                                android:textAlignment="center"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:textSize="@dimen/_11ssp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                            android:id="@+id/tv_failure"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:textAlignment="center"
+                            android:textColor="@color/red"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:inputType="textMultiLine"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:visibility="gone"
+                            android:textSize="@dimen/_15ssp"/>
+
+                    <TextView
+                            android:id="@+id/paymentDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:textAlignment="center"
+                            style="@style/unselectedText"
+                            android:text="01:23 PM Feb 23, 2019"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:textSize="@dimen/_11ssp"/>
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/ll_token">
+                    <TextView
+                            android:id="@+id/titleToken"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:textSize="@dimen/_10ssp"/>
+
+
+
+
+                        <TextView
+                                android:id="@+id/tokenID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                android:textColor="@color/red"
+                                android:text="--"
+                                android:layout_gravity="center"
+                                android:textAlignment="center"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:textSize="@dimen/_12ssp"/>
+
+
+
+                    <TextView
+                            android:id="@+id/token_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:inputType="textMultiLine"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:visibility="visible"
+                            android:textSize="@dimen/_11ssp"/>
+
+
+
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:background="@drawable/line_light_grey"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_8sdp"/>
+
+
+                <LinearLayout
+                        android:id="@+id/ll_feedback"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/titleSatisfied"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:textAlignment="center"
+                            style="@style/unselectedText"
+                            android:text="@string/satisfied"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:textSize="@dimen/_12ssp"/>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:padding="@dimen/_15sdp">
+
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+                            <ImageView
+                                    android:id="@+id/imgHappy"
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:src="@drawable/ic_emoji_happy"
+                                    android:alpha="0.5"
+                                    android:layout_gravity="center"/>
+
+                            <TextView
+                                    android:id="@+id/titleHappy"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/_1sdp"
+                                    android:textAlignment="center"
+                                    style="@style/emojiUnselectedText"
+                                    android:text="@string/extreamly"
+                                    android:paddingTop="@dimen/_5sdp"
+                                    android:textSize="@dimen/_11ssp"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+                            <ImageView
+                                    android:id="@+id/imgAverage"
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:alpha="0.5"
+                                    android:src="@drawable/ic_emoji_average"
+                                    android:layout_gravity="center"/>
+
+                            <TextView
+                                    android:id="@+id/titleAverage"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/_1sdp"
+                                    android:textAlignment="center"
+                                    style="@style/emojiUnselectedText"
+                                    android:text="@string/somewhat"
+                                    android:paddingTop="@dimen/_5sdp"
+                                    android:textSize="@dimen/_11ssp"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_weight="1">
+
+                            <ImageView
+                                    android:id="@+id/imgBad"
+                                    android:layout_width="@dimen/_35sdp"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:alpha="0.5"
+                                    android:src="@drawable/ic_emoji_bad"
+                                    android:layout_gravity="center"/>
+
+                            <TextView
+                                    android:id="@+id/titleBad"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingBottom="@dimen/_1sdp"
+                                    android:textAlignment="center"
+                                    style="@style/emojiUnselectedText"
+                                    android:text="@string/notatall"
+                                    android:paddingTop="@dimen/_5sdp"
+                                    android:textSize="@dimen/_11ssp"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_5sdp">
+
+                        <TextView
+                                android:id="@+id/titleFeedback"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/_1sdp"
+                                android:textAlignment="viewStart"
+                                style="@style/unselectedText"
+                                android:text="@string/writefeedback"
+                                android:textSize="@dimen/_11ssp"/>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp">
+
+
+                            <telenor.com.ep_v1_sdk.util.MenuHidingEditText
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="Comment Here.."
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingTop="@dimen/_7sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:inputType="textMultiLine|textVisiblePassword"
+                                    android:id="@+id/ed_feedback"
+                                    android:lines="3"
+                                    android:gravity="top|start"
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:paddingBottom="@dimen/_7ssp"
+                                    android:textSize="@dimen/_10ssp"
+                                    style="@style/donationAmountText"
+                                    android:background="@drawable/edittext_donation_bg"
+                                    android:layout_weight="1.5"/>
+
+                            <Button
+                                    android:id="@+id/buttonSubmit"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:background="@drawable/button_grey"
+                                    android:text="@string/submit"
+                                    android:lines="1"
+                                    android:textAllCaps="false"
+                                    android:maxLines="1"
+                                    android:layout_gravity="bottom"
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:textSize="@dimen/_9ssp"
+                                    android:textColor="@color/white"
+                                    android:layout_weight="0.5"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_2ssp"
+                            android:visibility="visible"
+                            android:layerType="software"
+                            android:src="@drawable/line_dashed_grey"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ll_donation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/donation_bg"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                <ImageView
+
+                        android:id="@+id/imgArrowLeft"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_down_arrow"
+                        android:layout_gravity="center"
+
+                        android:rotation="90"/>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/titleDonation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_5sdp"
+                                style="@style/unselectedText"
+                                android:text="@string/contribute"
+                                android:textSize="@dimen/_11ssp"/>
+
+                        <TextView
+                                android:id="@+id/tv_charity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/_5sdp"
+                                style="@style/unselectedText"
+                                android:textSize="@dimen/_11sdp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/_3sdp">
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_weight="0.4"
+                                android:layout_marginEnd="@dimen/_2sdp">
+
+                            <telenor.com.ep_v1_sdk.util.AutoResizeTextView
+                                    android:id="@+id/tv_donation1"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:minLines="2"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:layout_marginStart="@dimen/_3sdp"
+                                    android:paddingTop="@dimen/_2sdp"
+                                    android:paddingBottom="@dimen/_2sdp"
+                                    android:textSize="@dimen/_9ssp"
+                                    android:ellipsize="marquee"
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:background="@drawable/donation_white_bg"
+                                    android:textColor="#788995"
+                                    android:fontFamily="@font/telenorregular"/>
+
+                            <telenor.com.ep_v1_sdk.util.AutoResizeTextView
+                                    android:id="@+id/tv_donation2"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:minLines="2"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:layout_marginStart="@dimen/_3sdp"
+                                    android:paddingTop="@dimen/_2sdp"
+                                    android:ellipsize="marquee"
+                                    android:textSize="@dimen/_9ssp"
+                                    android:paddingBottom="@dimen/_2sdp"
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:background="@drawable/donation_white_bg"
+                                    android:textColor="#788995"
+                                    android:fontFamily="@font/telenorregular"/>
+
+                            <telenor.com.ep_v1_sdk.util.AutoResizeTextView
+                                    android:id="@+id/tv_donation3"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:ellipsize="marquee"
+                                    android:layout_height="match_parent"
+                                    android:minLines="2"
+                                    android:textAlignment="center"
+                                    android:gravity="center"
+                                    android:layout_marginStart="@dimen/_3sdp"
+                                    android:layout_marginEnd="@dimen/_3sdp"
+                                    android:paddingTop="@dimen/_2sdp"
+                                    android:textSize="@dimen/_9ssp"
+                                    android:paddingBottom="@dimen/_2sdp"
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:background="@drawable/donation_white_bg"
+                                    android:textColor="#788995"
+                                    android:fontFamily="@font/telenorregular"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_weight="0.6">
+
+                            <telenor.com.ep_v1_sdk.util.MenuHidingEditText
+                                    android:layout_width="0dp"
+                                    android:layout_weight="0.7"
+                                    android:layout_height="match_parent"
+                                    android:hint="Enter other amount"
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingTop="@dimen/_7sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:digits="0123456789"
+                                    android:inputType="number"
+                                    android:maxLength="6"
+                                    android:id="@+id/ed_donation_amount_cc"
+                                    android:layout_marginStart="@dimen/_2sdp"
+                                    android:layout_marginEnd="@dimen/_3sdp"
+                                    android:paddingBottom="@dimen/_7ssp"
+                                    android:textSize="@dimen/_10ssp"
+                                    style="@style/donationAmountText"
+                                    android:background="@drawable/edittext_donation_bg"
+                                    />
+
+                            <Button
+                                    android:id="@+id/buttonDonate"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="0.3"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/button_green"
+                                    android:text="@string/donate"
+                                    android:textAllCaps="false"
+                                    android:lines="1"
+                                    android:enabled="false"
+                                    android:alpha="0.5"
+                                    android:maxLines="1"
+                                    android:paddingStart="@dimen/_5sdp"
+                                    android:paddingEnd="@dimen/_5sdp"
+                                    android:textSize="@dimen/_9ssp"
+                                    android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                        android:id="@+id/imgArrowRight"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_down_arrow"
+                        android:layout_gravity="center"
+
+                        android:rotation="270"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <include layout="@layout/ll_bottom_view" />
+</LinearLayout>
+
+    <ProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/green"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
+
+</RelativeLayout>
