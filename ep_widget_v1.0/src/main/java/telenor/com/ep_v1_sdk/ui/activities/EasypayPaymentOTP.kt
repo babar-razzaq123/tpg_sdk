@@ -238,7 +238,7 @@ class EasypayPaymentOTP : AppCompatActivity(),TextWatcher  {
 
                 }.execute(
                     POST,
-                    BASE_URL + RESEND_OTP_ENDPOINT,
+                    storeConfig.baseUrl/*BASE_URL*/ + RESEND_OTP_ENDPOINT,
                     json.toString()
                 )
 
@@ -410,7 +410,7 @@ class EasypayPaymentOTP : AppCompatActivity(),TextWatcher  {
 
                 }.execute(
                     POST,
-                    BASE_URL + SUBMIT_OTP_ENDPOINT,
+                    storeConfig.baseUrl/*BASE_URL*/ + SUBMIT_OTP_ENDPOINT,
                     json.toString()
                 )
 

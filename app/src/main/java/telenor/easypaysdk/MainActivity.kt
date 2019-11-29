@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity()  {
                         editTextStoreName!!.text!!.toString(),
                         editTextTokenExpiry!!.text!!.toString(),
                         editTextBankIdentifier!!.text!!.toString(),
-                        editTextSecretKey!!.text!!.toString()
+                        editTextSecretKey!!.text!!.toString(),
+                        editTextURL!!.text!!.toString()
 
 
                     )
@@ -47,8 +48,8 @@ class MainActivity : AppCompatActivity()  {
                         editTextStoreName!!.text!!.toString(),
                         editTextTokenExpiry!!.text!!.toString(),
                         editTextBankIdentifier!!.text!!.toString(),
-                        editTextSecretKey!!.text!!.toString()
-
+                        editTextSecretKey!!.text!!.toString(),
+                        editTextURL!!.text!!.toString()
 
                     )
                 }

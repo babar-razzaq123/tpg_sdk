@@ -22,9 +22,10 @@ class Easypay{
                   storeName: String,
                   expiryToken:String,
                   bankIdentifier: String,
-                  hashKey: String
+                  hashKey: String,
+                  baseUrl: String
     ): Easypay {
-         val config = EPConfiguration(storeId,storeName,hashKey, expiryToken,bankIdentifier)
+         val config = EPConfiguration(storeId,storeName,hashKey, expiryToken,bankIdentifier, baseUrl)
         initEasyPay = EasyPay(appContext,config)
 
         return initEasyPay
@@ -46,13 +47,13 @@ class Easypay{
         sharedPrefDataSource=EPSharedPrefDataSource(appContext)
 
         val storeConfig = sharedPrefDataSource.getEasyPayConfig()
-        when(!/*storeConfig.baseUrl*/BASE_URL.isNullOrEmpty()){
+        when(!storeConfig.baseUrl/*BASE_URL*/.isNullOrEmpty()){
 
 
 
             true->{
 
-                if (Validation().isUrlValid(/*storeConfig.baseUrl*/BASE_URL)) {
+                if (Validation().isUrlValid(storeConfig.baseUrl/*BASE_URL*/)) {
 
                     if (Validation().validSecretKey(storeConfig.secretKey)) {
 

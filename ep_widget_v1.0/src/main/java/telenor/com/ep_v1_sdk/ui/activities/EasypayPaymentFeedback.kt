@@ -1344,7 +1344,7 @@ class EasypayPaymentFeedback : AppCompatActivity() {
 
             }.execute(
                 "POST",
-                BASE_URL+"/checkout/feedback/initiate-transaction",
+                storeConfig.baseUrl/*BASE_URL*/+"/checkout/feedback/initiate-transaction",
                 json.toString()
             )
 

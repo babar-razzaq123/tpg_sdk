@@ -1,7 +1,7 @@
 package telenor.com.ep_v1_sdk.config
 
 // Staging URL
-const val BASE_URL = "https://easypaystg.easypaisa.com.pk/easypay-service/rest"
+//const val BASE_URL = "https://easypaystg.easypaisa.com.pk/easypay-service/rest"
 // Production URL
 //const val BASE_URL = "https://easypay.easypaisa.com.pk/easypay-service/rest"
 // Local QA URL

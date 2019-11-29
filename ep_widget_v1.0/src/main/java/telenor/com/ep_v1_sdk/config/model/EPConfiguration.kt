@@ -8,5 +8,6 @@ data class EPConfiguration(
     var storeName: String,
     var secretKey: String,
     var expiryToken: String,
-    var bankIdentifier: String
+    var bankIdentifier: String,
+    var baseUrl: String
 ): Serializable

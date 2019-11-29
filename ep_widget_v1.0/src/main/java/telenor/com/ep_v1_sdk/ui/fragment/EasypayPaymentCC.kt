@@ -1076,7 +1076,7 @@ class EasypayPaymentCC(easypay: EasypayCall, cardResponseCallback: CardResponseC
 
                 }.execute(
                     POST,
-                    BASE_URL + CC_PRE_VALIDATION_ENDPOINT,
+                    storeConfig.baseUrl/*BASE_URL*/ + CC_PRE_VALIDATION_ENDPOINT,
                     json.toString()
                 )
 
@@ -1122,7 +1122,7 @@ class EasypayPaymentCC(easypay: EasypayCall, cardResponseCallback: CardResponseC
 
             }.execute(
                 "POST",
-                BASE_URL+"/checkout/cc/initiate-cc",
+                storeConfig.baseUrl/*BASE_URL*/+"/checkout/cc/initiate-cc",
                 json.toString()
             )
 

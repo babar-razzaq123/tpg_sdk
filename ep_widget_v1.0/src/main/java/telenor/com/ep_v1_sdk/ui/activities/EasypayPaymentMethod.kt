@@ -226,7 +226,7 @@ class EasypayPaymentMethod : AppCompatActivity(){
 
             }.execute(
                 POST,
-                BASE_URL+ INITIATEPAYMENTMETHODS_ENDPOINT,
+                storeConfig.baseUrl/*BASE_URL*/+ INITIATEPAYMENTMETHODS_ENDPOINT,
                 json.toString()
             )
 

@@ -306,7 +306,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
                 }.execute(
                     POST,
-                    BASE_URL+ MA_INITIATETRANSACTION_ENDPOINT,
+                    storeConfig.baseUrl/*BASE_URL*/+ MA_INITIATETRANSACTION_ENDPOINT,
                     json.toString()
                 )
 
@@ -421,7 +421,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
             }.execute(
                 POST,
-                BASE_URL+ OTC_INITIATETRANSACTION_ENDPOINT,
+                storeConfig.baseUrl/*BASE_URL*/+ OTC_INITIATETRANSACTION_ENDPOINT,
                 json.toString()
             )
 
@@ -627,7 +627,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
             }.execute(
                 POST,
-                BASE_URL+ CC_INITIATETRANSACTION_ENDPOINT,
+                storeConfig.baseUrl/*BASE_URL*/+ CC_INITIATETRANSACTION_ENDPOINT,
                 json.toString()
             )
 
@@ -934,7 +934,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
                 }.execute(
                     POST,
-                    BASE_URL + CC_TRANSACTION_STATUS_ENDPOINT,
+                    storeConfig.baseUrl/*BASE_URL*/ + CC_TRANSACTION_STATUS_ENDPOINT,
                     json.toString()
                 )
 
@@ -1139,7 +1139,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
                 }.execute(
                     POST,
-                    BASE_URL + DD_INITIATETRANSACTION_ENDPOINT,
+                    storeConfig.baseUrl/*BASE_URL*/ + DD_INITIATETRANSACTION_ENDPOINT,
                     json.toString()
                 )
 
@@ -1179,7 +1179,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
             }.execute(
                 GET,
-                BASE_URL+ MA_DONATIONS_ENDPOINT,
+                storeConfig.baseUrl/*BASE_URL*/+ MA_DONATIONS_ENDPOINT,
                 json.toString()
             )
 

@@ -210,7 +210,7 @@ class EasypayPaymentConfirmation : AppCompatActivity(), EasypayDonationCall {
 
                 }.execute(
                     "POST",
-                    BASE_URL+"/checkout/ma/initiate-transaction",
+                    storeConfig.baseUrl/*BASE_URL*/+"/checkout/ma/initiate-transaction",
                     json.toString()
                 )
 
