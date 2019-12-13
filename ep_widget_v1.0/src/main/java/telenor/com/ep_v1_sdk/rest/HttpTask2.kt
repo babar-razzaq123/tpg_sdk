@@ -120,12 +120,13 @@ class HttpTask2(hashKey: String, callback: (String?) -> Unit) : AsyncTask<String
                     return true
                 }
             })
-            val context = SSLContext.getInstance("TLS")
+            val context = SSLContext.getInstance("TLSv1.2")
             context.init(null, arrayOf<X509TrustManager>(object : X509TrustManager {
-                override fun getAcceptedIssuers(): Array<X509Certificate> {
+                override fun getAcceptedIssuers(): Array<X509Certificate?> {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     //val acceptedIssuers: Array<X509Certificate?>
                     //get() = arrayOfNulls<X509Certificate>(0)
+                    return arrayOfNulls<X509Certificate>(size = 0)
                 }
 
 

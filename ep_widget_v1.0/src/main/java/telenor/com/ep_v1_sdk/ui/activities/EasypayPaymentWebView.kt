@@ -1,35 +1,27 @@
 package telenor.com.ep_v1_sdk.ui.activities
 
-import android.graphics.Bitmap
+import android.app.AlertDialog
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_payment_webview.*
-import kotlinx.android.synthetic.main.ll_form_dd.*
 import kotlinx.android.synthetic.main.ll_top_view.*
 import telenor.com.ep_v1_sdk.R
-import telenor.com.ep_v1_sdk.config.CONFIGURATION
 import telenor.com.ep_v1_sdk.config.PAYMENTURL
-import telenor.com.ep_v1_sdk.config.model.EPConfiguration
-import telenor.com.ep_v1_sdk.ui.EasypayCall
 import telenor.com.ep_v1_sdk.ui.FeedBackCall
 import telenor.com.ep_v1_sdk.ui.StopHandlerCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
-import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.net.http.SslError
 import android.webkit.SslErrorHandler
-import telenor.com.ep_v1_sdk.config.CCRESPONSESUCCESS
 import telenor.com.ep_v1_sdk.config.LOADINGMSG
-import telenor.com.ep_v1_sdk.util.ActivityUtil
 
 class EasypayPaymentWebView : AppCompatActivity() {
 
@@ -39,6 +31,7 @@ class EasypayPaymentWebView : AppCompatActivity() {
     lateinit var feedbackCall: FeedBackCall
     var webviewShown : Boolean = false
     var loadingMsg: String = ""
+
     companion object{
         lateinit var stopHandlerCallback: StopHandlerCallback
     }
@@ -75,8 +68,20 @@ class EasypayPaymentWebView : AppCompatActivity() {
             }
 
             override fun onReceivedSslError(view: WebView, handler: SslErrorHandler, error: SslError) {
-                Log.d("Ssl Error:", handler.toString() + "error:" + error)
-                handler.proceed()
+                Log.d("Ssl Error:", handler.toString() + "error:" + error.toString())
+                //handler.proceed()
+                // possible solution
+                val builder = AlertDialog.Builder(view.context);
+                builder.setMessage("Your request is being processed. Continue ?")
+                builder.setPositiveButton("Yes"){dialog, which ->
+                    handler.proceed()
+                }
+                builder.setNegativeButton("No"){dialog, which ->
+                    handler.cancel()
+                }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+                //
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -153,4 +158,5 @@ class EasypayPaymentWebView : AppCompatActivity() {
 //        stopHandlerCallback.closeWebview(true)
 
     }
+
 }
