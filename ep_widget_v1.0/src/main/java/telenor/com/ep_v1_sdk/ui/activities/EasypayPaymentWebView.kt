@@ -72,14 +72,16 @@ class EasypayPaymentWebView : AppCompatActivity() {
                 //handler.proceed()
                 // possible solution
                 val builder = AlertDialog.Builder(view.context);
-                builder.setMessage("Your request is being processed. Continue ?")
-                builder.setPositiveButton("Yes"){dialog, which ->
+                //builder.setMessage("Your request is being processed. Continue ?")
+                builder.setMessage("There are problems with the security certificate for this site. This certificate is not from trusted authority.")
+                builder.setPositiveButton("Continue"){dialog, which ->
                     handler.proceed()
                 }
-                builder.setNegativeButton("No"){dialog, which ->
+                builder.setNegativeButton("Cancel"){dialog, which ->
                     handler.cancel()
                 }
                 val dialog: AlertDialog = builder.create()
+                dialog.setCanceledOnTouchOutside(false)
                 dialog.show()
                 //
             }
