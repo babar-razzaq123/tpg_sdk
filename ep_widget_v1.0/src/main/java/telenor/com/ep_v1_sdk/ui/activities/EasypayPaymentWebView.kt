@@ -73,7 +73,7 @@ class EasypayPaymentWebView : AppCompatActivity() {
                 // possible solution
                 val builder = AlertDialog.Builder(view.context);
                 //builder.setMessage("Your request is being processed. Continue ?")
-                builder.setMessage("There are problems with the security certificate for this site. This certificate is not from trusted authority.")
+                builder.setMessage("There are problems with the security certificate for this site. Do you want to continue?")
                 builder.setPositiveButton("Continue"){dialog, which ->
                     handler.proceed()
                 }
