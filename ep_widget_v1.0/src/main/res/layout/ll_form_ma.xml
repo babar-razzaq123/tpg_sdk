@@ -67,7 +67,7 @@
                     <ImageView
                             android:layout_width="@dimen/_80sdp"
                             android:layout_height="@dimen/_40sdp"
-                            android:scaleType="fitCenter"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/easypaisa_logo"
                             android:layout_gravity="center"/>
 
