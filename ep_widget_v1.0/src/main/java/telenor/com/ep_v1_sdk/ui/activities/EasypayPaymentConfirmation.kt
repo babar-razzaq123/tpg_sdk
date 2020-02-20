@@ -237,15 +237,15 @@ class EasypayPaymentConfirmation : AppCompatActivity(), EasypayDonationCall {
     }
     private fun setHeadingTitle(title: String) {
 
-        val toolbar = findViewById<Toolbar>(R.id.mainToolbar)
-        val mTitle = toolbar.findViewById(R.id.toolbar_title) as TextView
+        val toolbar = findViewById<Toolbar>(R.id.mainToolbar_payment_confirmation)
+        val mTitle = toolbar.findViewById(R.id.toolbar_title_payment_confirmation) as TextView
         mTitle.text = title
         mTitle.setTypeface(null, Typeface.BOLD)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        mainToolbar.setNavigationIcon(R.drawable.back)
-        mainToolbar.setNavigationOnClickListener(object : View.OnClickListener {
+        toolbar.setNavigationIcon(R.drawable.back)
+        toolbar.setNavigationOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
                 onBackPressed()
             }

@@ -12,8 +12,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <include layout="@layout/ll_top_view"/>
+        <!--<include layout="@layout/ll_top_view"/>-->
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/mainToolbar_payment_webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="4dp"
+                android:theme="@style/AppTheme"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                >
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/telenorregular"
+                    android:textSize="@dimen/_13ssp"
+                    android:id="@+id/toolbar_title_payment_webview"/>
+        </androidx.appcompat.widget.Toolbar>
 
         <WebView
                 android:id="@+id/webview"

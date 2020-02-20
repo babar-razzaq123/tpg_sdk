@@ -12,7 +12,26 @@
 
 
 
-    <include layout="@layout/ll_top_view" />
+    <!--<include layout="@layout/ll_top_view" />-->
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mainToolbar_payment_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:theme="@style/AppTheme"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/telenorregular"
+                android:textSize="@dimen/_13ssp"
+                android:id="@+id/toolbar_title_payment_feedback"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
             android:layout_width="match_parent"
