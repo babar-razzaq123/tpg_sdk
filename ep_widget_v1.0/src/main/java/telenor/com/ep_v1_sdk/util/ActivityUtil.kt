@@ -91,7 +91,7 @@ class ActivityUtil{
         imageView.visibility = View.VISIBLE
         Glide.with(appCompatActivity)
             .asGif()
-            .load(R.drawable.ma_loader_gif_updated)
+            .load(R.drawable.ma_loader_gif)
             .into(imageView)
         appCompatActivity.window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
             WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)

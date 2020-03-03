@@ -48,8 +48,8 @@ class EasypayPaymentOTC(easypay: EasypayCall) : Fragment() {
         storeConfig =  arguments?.get(CONFIGURATION) as EPConfiguration
         paymentOrder =  arguments?.get(PAYMENTORDER) as EPPaymentOrder
         allowedPaymentMethods =arguments?.get(PAYMENTTYPE) as AllowedPaymentMethods
-        initOTC(allowedPaymentMethods)
         ed_email_otc.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        initOTC(allowedPaymentMethods)
 
     }
 
@@ -66,6 +66,7 @@ class EasypayPaymentOTC(easypay: EasypayCall) : Fragment() {
         var isPhoneValid: Boolean = false
         var isEmailValid: Boolean = false
         var keyDel = false
+        var invalidNumberFlag: Boolean = false
 
         ll_child_otc.visibility =View.VISIBLE
         listTitle_otc.text = allowedPaymentMethods.description
@@ -137,6 +138,7 @@ class EasypayPaymentOTC(easypay: EasypayCall) : Fragment() {
             // Below else is for New condition told by qasim
             else{
                 var phone = paymentOrder.phone.replace("+92","0")
+                invalidNumberFlag = true
                 if( phone.length ==11){
                     var str = phone
                     val first = str.subSequence(0,4)
@@ -299,6 +301,14 @@ class EasypayPaymentOTC(easypay: EasypayCall) : Fragment() {
             //ActivityUtil().hideKeyboard(activity as EasypayPaymentForm)
             Snackbar.make(ll_child_otc , getString(R.string.otc_email_hint), Snackbar.LENGTH_SHORT).show()
 
+        }
+
+        if(!storeConfig.isEditable && !paymentOrder.phone.isNullOrEmpty() && !invalidNumberFlag){
+            ed_mobile_otc.keyListener = null;
+        }
+
+        if(!storeConfig.isEditable && !paymentOrder.email.isNullOrEmpty()){
+            ed_email_otc.keyListener = null;
         }
 
     }

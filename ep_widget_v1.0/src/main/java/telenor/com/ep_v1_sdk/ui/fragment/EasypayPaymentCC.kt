@@ -75,6 +75,7 @@ class EasypayPaymentCC(easypay: EasypayCall, cardResponseCallback: CardResponseC
     var isCVVValid: Boolean = false
 //    var cardFocus: Boolean = false
     var isLoading : Boolean = false
+    var invalidNumberFlag: Boolean = false
 
     companion object {
 
@@ -99,10 +100,10 @@ class EasypayPaymentCC(easypay: EasypayCall, cardResponseCallback: CardResponseC
         if (!storeConfig.bankIdentifier.toString().isNullOrEmpty()) {
             getCCLogo()
         }
-        initCC(allowedPaymentMethods)
         ed_email_cc.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
         ed_card_cc.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
         //ed_cvv_cc.setInputType( InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        initCC(allowedPaymentMethods)
 
     }
 
@@ -206,6 +207,7 @@ class EasypayPaymentCC(easypay: EasypayCall, cardResponseCallback: CardResponseC
             // Below else is for New condition told by qasim
             else{
                 var phone = paymentOrder.phone.replace("+92","0")
+                invalidNumberFlag = true
                 if( phone.length ==11){
                     var str = phone
                     val first = str.subSequence(0,4)
@@ -960,6 +962,14 @@ class EasypayPaymentCC(easypay: EasypayCall, cardResponseCallback: CardResponseC
 
             //ActivityUtil().hideKeyboard(activity as EasypayPaymentForm)
             Snackbar.make(ll_child_cc , getString(R.string.cc_cvv_hint), Snackbar.LENGTH_SHORT).show()
+        }
+
+        if(!storeConfig.isEditable && !paymentOrder.phone.isNullOrEmpty() && !invalidNumberFlag){
+            ed_mobile_cc.keyListener = null;
+        }
+
+        if(!storeConfig.isEditable && !paymentOrder.email.isNullOrEmpty()){
+            ed_email_cc.keyListener = null;
         }
 
     }

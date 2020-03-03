@@ -56,8 +56,9 @@ class EasypayPaymentMA(easypay: EasypayCall) : Fragment() {
         storeConfig =  arguments?.get(CONFIGURATION) as EPConfiguration
         paymentOrder =  arguments?.get(PAYMENTORDER) as EPPaymentOrder
         allowedPaymentMethods =arguments?.get(PAYMENTTYPE) as AllowedPaymentMethods
-        initMA(allowedPaymentMethods)
+
         ed_email_ma.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        initMA(allowedPaymentMethods)
 
     }
 
@@ -72,6 +73,7 @@ class EasypayPaymentMA(easypay: EasypayCall) : Fragment() {
 
         var isPhoneValid: Boolean = false
         var isEmailValid: Boolean = false
+        var invalidNumberFlag: Boolean = false
 
         ll_child_ma.visibility =View.VISIBLE
 
@@ -143,6 +145,7 @@ class EasypayPaymentMA(easypay: EasypayCall) : Fragment() {
             // Below else is for New condition told by qasim
             else{
                 var phone = paymentOrder.phone.replace("+92","0")
+                invalidNumberFlag = true
                 if( phone.length ==11){
                     var str = phone
                     val first = str.subSequence(0,4)
@@ -306,7 +309,13 @@ class EasypayPaymentMA(easypay: EasypayCall) : Fragment() {
 
         }
 
+        if(!storeConfig.isEditable && !paymentOrder.phone.isNullOrEmpty() && !invalidNumberFlag){
+            ed_mobile_ma.keyListener = null;
+        }
 
+        if(!storeConfig.isEditable && !paymentOrder.email.isNullOrEmpty()){
+            ed_email_ma.keyListener = null;
+        }
     }
 
 

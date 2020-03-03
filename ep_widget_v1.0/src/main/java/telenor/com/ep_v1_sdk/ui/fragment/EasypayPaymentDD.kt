@@ -76,6 +76,7 @@ class EasypayPaymentDD(easypay: EasypayCall) : Fragment() {
         var isMobileValid: Boolean = false
         var isCardNumberSelected: Boolean = false
         var isCardValid: Boolean = false
+        var invalidNumberFlag: Boolean = false
 
         directDebitBank = arguments?.get(DIRECTDEBITBANK) as ArrayList<DirectDebitBank>
 
@@ -205,6 +206,7 @@ class EasypayPaymentDD(easypay: EasypayCall) : Fragment() {
             // Below else is for New condition told by qasim
             else{
                 var phone = paymentOrder.phone.replace("+92","0")
+                invalidNumberFlag = true
                 if( phone.length ==11){
                     var str = phone
                     val first = str.subSequence(0,4)
@@ -1055,7 +1057,13 @@ class EasypayPaymentDD(easypay: EasypayCall) : Fragment() {
 
         }
 
+        if(!storeConfig.isEditable && !paymentOrder.phone.isNullOrEmpty() && !invalidNumberFlag){
+            ed_mobile_dd.keyListener = null;
+        }
 
+        if(!storeConfig.isEditable && !paymentOrder.email.isNullOrEmpty()){
+            ed_email_dd.keyListener = null;
+        }
 
     }
 
@@ -1075,10 +1083,10 @@ class EasypayPaymentDD(easypay: EasypayCall) : Fragment() {
         storeConfig =  arguments?.get(CONFIGURATION) as EPConfiguration
         paymentOrder =  arguments?.get(PAYMENTORDER) as EPPaymentOrder
         allowedPaymentMethods =arguments?.get(PAYMENTTYPE) as AllowedPaymentMethods
-        initDD(allowedPaymentMethods, savedInstanceState)
         ed_email_dd.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
         ed_account_dd.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
         ed_card_dd.setInputType( InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
+        initDD(allowedPaymentMethods, savedInstanceState)
 
     }
 

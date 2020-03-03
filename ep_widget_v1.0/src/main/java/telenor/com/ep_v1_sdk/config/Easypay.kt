@@ -23,9 +23,10 @@ class Easypay{
                   expiryToken:String,
                   bankIdentifier: String,
                   hashKey: String,
-                  baseUrl: String
+                  baseUrl: String,
+                  isEditable: Boolean
     ): Easypay {
-         val config = EPConfiguration(storeId,storeName,hashKey, expiryToken,bankIdentifier, baseUrl)
+         val config = EPConfiguration(storeId,storeName,hashKey, expiryToken,bankIdentifier, baseUrl, isEditable)
         initEasyPay = EasyPay(appContext,config)
 
         return initEasyPay

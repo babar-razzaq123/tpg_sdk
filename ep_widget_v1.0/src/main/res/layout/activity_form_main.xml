@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
             android:layout_margin="@dimen/_20sdp"
-            android:src="@drawable/ma_loader_gif_updated"
+            android:src="@drawable/ma_loader_gif"
             android:layout_centerInParent="true"
             android:visibility="gone"
             />

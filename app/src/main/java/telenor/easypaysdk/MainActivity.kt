@@ -8,6 +8,8 @@ import android.text.InputType
 
 class MainActivity : AppCompatActivity()  {
 
+    var isEditable : Boolean = false;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store_credential)
@@ -22,6 +24,19 @@ class MainActivity : AppCompatActivity()  {
 
         versionCodeTV.text = BuildConfig.VERSION_NAME
 
+        editableSwitchBtn.setOnCheckedChangeListener { buttonView, isChecked ->
+
+            when(isChecked){
+                true -> {
+                    isEditable = true
+                }
+                false -> {
+                    isEditable = false
+                }
+            }
+
+        }
+
         proceedButton.setOnClickListener {
 
             when(editStoreId.text?.toString().isNullOrBlank()){
@@ -35,7 +50,8 @@ class MainActivity : AppCompatActivity()  {
                         editTextTokenExpiry!!.text!!.toString(),
                         editTextBankIdentifier!!.text!!.toString(),
                         editTextSecretKey!!.text!!.toString(),
-                        editTextURL!!.text!!.toString()
+                        editTextURL!!.text!!.toString(),
+                        isEditable
 
 
                     )
@@ -49,7 +65,8 @@ class MainActivity : AppCompatActivity()  {
                         editTextTokenExpiry!!.text!!.toString(),
                         editTextBankIdentifier!!.text!!.toString(),
                         editTextSecretKey!!.text!!.toString(),
-                        editTextURL!!.text!!.toString()
+                        editTextURL!!.text!!.toString(),
+                        isEditable
 
                     )
                 }
