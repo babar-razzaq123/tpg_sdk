@@ -1071,7 +1071,7 @@ class EasypayPaymentFeedback : AppCompatActivity() {
                         titleStatus.setTextColor(resources.getColor(R.color.green))
                         imgIcon.setImageResource(R.drawable.ic_success)
                         paymentStatus.text = getText(R.string.successPayment)
-                        transactionId.text = response.content.transactionId.toString()
+                        transactionId.text = response.content.transactionRefNumber.toString()
                         totalAmount.text = response.content.transactionAmount
                         paymentDate.text = response.content.transactionDateTime
                         ll_transactionId.visibility = View.VISIBLE

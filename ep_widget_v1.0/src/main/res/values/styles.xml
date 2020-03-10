@@ -29,7 +29,7 @@
 
     <style	name="selectedText" parent="@style/TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/telenorregular</item>
-        <item name="android:textColor">#A7C638</item>
+        <item name="android:textColor">#00BD5F</item>
         <item name="android:textStyle">bold</item>
     </style>
 

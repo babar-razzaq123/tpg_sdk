@@ -66,13 +66,13 @@
                             android:layout_marginStart="@dimen/_5sdp"
                             android:paddingEnd="?android:attr/expandableListPreferredItemPaddingLeft"
                             android:paddingTop="@dimen/_5sdp"
-                            android:textColor="#A7C638"/>
+                            style="@style/selectedText"/>
 
                     <ImageView
                             android:layout_width="@dimen/_80sdp"
                             android:layout_height="@dimen/_40sdp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/logo"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/easypaisa_logo"
                             android:layout_gravity="center"/>
 
                     <ImageView

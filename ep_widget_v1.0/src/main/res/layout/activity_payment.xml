@@ -108,11 +108,11 @@
                             android:id="@+id/imgIconEasypaisa"
                             android:layout_width="@dimen/_80sdp"
                             android:layout_height="@dimen/_40sdp"
-                            android:src="@drawable/logo"
+                            android:src="@drawable/easypaisa_logo"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:layout_gravity="center"
-                            android:scaleType="fitCenter"/>
+                            android:scaleType="centerCrop"/>
                 </LinearLayout>
 
 

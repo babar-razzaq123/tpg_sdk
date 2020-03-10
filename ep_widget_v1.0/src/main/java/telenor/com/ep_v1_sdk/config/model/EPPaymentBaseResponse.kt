@@ -15,6 +15,7 @@ data class ContentData (
     val storeId : String,
     val paymentToken :String,
     val transactionId : String,
+    val transactionRefNumber : String,
     val transactionDateTime : String,
     val paymentTokenExpiryDateTime :String,
     val htmlBody : String,
