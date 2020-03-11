@@ -69,8 +69,8 @@
     <string name="resend">Resend</string>
     <string name="verify">Verify</string>
     <string name="visa_master_card_txt">VISA/MasterCard</string>
-    <string name="instructions">Instructions</string>
-    <string name="instruction_one">1:An Easypaisa Token Number will be issued when you click \'Pay Now\'- you will aslo receive the token via SMS and E-mail.</string>
+    <string name="instructions">Instructions : </string>
+    <string name="instruction_one">1:An Easypaisa Token Number will be issued when you click \'Pay Now\'- you will also receive the token via SMS and E-mail.</string>
     <string name="instruction_two">2:You can pay the Easypaisa Token at your nearest Telenor Sales &amp; Service Center, Franchise, or Easypaisa Agent/Retailer.</string>
     <string name="instruction_three">3:There are no extra charges for paying an Easypaisa Token.</string>
     <string name="ma_mobile_hint">Please enter your Easypaisa Mobile Account Number</string>

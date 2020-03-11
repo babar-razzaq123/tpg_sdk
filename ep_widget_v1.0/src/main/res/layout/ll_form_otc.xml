@@ -82,20 +82,6 @@
 
                 </LinearLayout>
 
-                <TextView
-                        android:id="@+id/headTitle_otc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:paddingTop="@dimen/_5sdp"
-                        android:text="@string/enter_details"
-                        android:textSize="@dimen/_10ssp"
-                        android:textColor="#788995"
-                        android:visibility="gone"
-                        />
-
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -143,6 +129,19 @@
                             android:textColor="#788995"/>
                 </LinearLayout>
 
+                <TextView
+                        android:id="@+id/headTitle_otc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:text="@string/enter_details"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="#788995"
+                        android:visibility="visible"
+                        />
                 <View
                         android:layout_width="match_parent"
                         android:layout_marginTop="@dimen/_10sdp"
