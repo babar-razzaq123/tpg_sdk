@@ -117,7 +117,7 @@ class HttpTask2(hashKey: String, callback: (String?) -> Unit) : AsyncTask<String
         try {
             HttpsURLConnection.setDefaultHostnameVerifier(object : HostnameVerifier {
                 override fun verify(hostname: String, session: SSLSession): Boolean {
-                    return true
+                    return session.isValid
                 }
             })
             val context = SSLContext.getInstance("TLSv1.2")
@@ -146,7 +146,7 @@ class HttpTask2(hashKey: String, callback: (String?) -> Unit) : AsyncTask<String
                 }
             }), SecureRandom())
             HttpsURLConnection.setDefaultSSLSocketFactory(
-                context.getSocketFactory()
+                context.socketFactory
             )
         } catch (e: Exception) { // should never happen
             e.printStackTrace()

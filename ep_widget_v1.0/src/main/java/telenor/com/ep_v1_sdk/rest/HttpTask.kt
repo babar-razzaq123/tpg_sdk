@@ -2,6 +2,7 @@ package telenor.com.ep_v1_sdk.rest
 
 import android.content.Context
 import android.os.AsyncTask
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -115,7 +116,8 @@ class HttpTask(  context: Context,callback: (String?) -> Unit) : AsyncTask<Strin
     fun trustEveryone() = try {
         HttpsURLConnection.setDefaultHostnameVerifier(object : HostnameVerifier {
             override fun verify(hostname: String, session: SSLSession): Boolean {
-                return true
+                //return true
+                return session.isValid
             }
         })
         val context = SSLContext.getInstance("TLSv1.2")
@@ -143,7 +145,7 @@ class HttpTask(  context: Context,callback: (String?) -> Unit) : AsyncTask<Strin
             }
         }), SecureRandom())
         HttpsURLConnection.setDefaultSSLSocketFactory(
-            context.getSocketFactory()
+            context.socketFactory
         )
     } catch (e: Exception) { // should never happen
         e.printStackTrace()
