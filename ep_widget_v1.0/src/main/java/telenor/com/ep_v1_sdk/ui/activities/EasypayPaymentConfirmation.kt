@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
@@ -161,8 +162,9 @@ class EasypayPaymentConfirmation : AppCompatActivity(), EasypayDonationCall {
             postData += "&storeId=" + paymnentCharity.charityStoreId.toString()
         }
 
+        val decryptedHash = Validation().decryptHashKey(paymnentCharity.secretKey , paymnentCharity.charityStoreId, paymnentCharity.charityName )
 
-        val encryptedRequest = Validation().encrypt(postData.toString(),paymnentCharity.secretKey)
+        val encryptedRequest = Validation().encrypt(postData.toString(), decryptedHash /*paymnentCharity.secretKey*/)
         json.put(ENCRYPTEDREQUEST,  encryptedRequest.replace("\n",""))
 
         if(InternetHelper().isInternetConnected(this)) {

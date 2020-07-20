@@ -160,10 +160,12 @@ class EasypayPaymentOTP : AppCompatActivity(),TextWatcher  {
             //
             var postData = ""
 
-            postData += ACCESSTOKEN + ENCRYPT_KEY_EQUAL + paymentDTO.accessToken
+            if (!paymentDTO.accessToken.isNullOrEmpty()) {
+                postData += ACCESSTOKEN + ENCRYPT_KEY_EQUAL + paymentDTO.accessToken + ENCRYPT_KEY_AMPERSAND
+            }
 
             if (!paymentDTO.amount.toString().isNullOrEmpty()) {
-                postData += ENCRYPT_KEY_AMPERSAND + ENCRYPT_AMOUNT + ENCRYPT_KEY_EQUAL + paymentDTO.amount
+                postData += ENCRYPT_AMOUNT + ENCRYPT_KEY_EQUAL + paymentDTO.amount
             }
 
             // Bank Account was required here only for now
@@ -309,10 +311,12 @@ class EasypayPaymentOTP : AppCompatActivity(),TextWatcher  {
             //
             var postData = ""
 
-            postData += ACCESSTOKEN + ENCRYPT_KEY_EQUAL + paymentDTO.accessToken
+            if (!paymentDTO.accessToken.isNullOrEmpty()) {
+                postData += ACCESSTOKEN + ENCRYPT_KEY_EQUAL + paymentDTO.accessToken + ENCRYPT_KEY_AMPERSAND
+            }
 
             if (!paymentDTO.amount.toString().isNullOrEmpty()) {
-                postData += ENCRYPT_KEY_AMPERSAND + ENCRYPT_AMOUNT + ENCRYPT_KEY_EQUAL + paymentDTO.amount
+                postData +=  ENCRYPT_AMOUNT + ENCRYPT_KEY_EQUAL + paymentDTO.amount
             }
 
             // Bank Account was required here only for now

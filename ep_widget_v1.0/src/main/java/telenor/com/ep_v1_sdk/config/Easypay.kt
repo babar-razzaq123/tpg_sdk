@@ -17,16 +17,18 @@ class Easypay{
     /**
      * Static method to create instance.
      */
-    fun configure(appContext: Context,
-                  storeId: String,
-                  storeName: String,
-                  expiryToken:String,
-                  bankIdentifier: String,
-                  hashKey: String,
-                  baseUrl: String,
-                  isEditable: Boolean
+    fun configure(
+        appContext: Context,
+        storeId: String,
+        storeName: String,
+        expiryToken:String,
+        bankIdentifier: String,
+        encryptedHashKey: String,
+        baseUrl: String,
+        isEditable: Boolean,
+        specificPaymentMethod: String?
     ): Easypay {
-         val config = EPConfiguration(storeId,storeName,hashKey, expiryToken,bankIdentifier, baseUrl, isEditable)
+         val config = EPConfiguration(storeId,storeName,encryptedHashKey, expiryToken,bankIdentifier, baseUrl, isEditable, specificPaymentMethod)
         initEasyPay = EasyPay(appContext,config)
 
         return initEasyPay

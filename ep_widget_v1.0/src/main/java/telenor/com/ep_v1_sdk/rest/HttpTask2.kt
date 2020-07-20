@@ -20,12 +20,12 @@ import java.security.cert.X509Certificate
 import javax.net.ssl.*
 
 
-class HttpTask2(hashKey: String, callback: (String?) -> Unit) : AsyncTask<String, Unit, String>()  {
+class HttpTask2(hashKey: String, orderIdAndStoreId: String, callback: (String?) -> Unit) : AsyncTask<String, Unit, String>()  {
 
     private val TIMEOUT: Int = 300000
     var callback = callback
     var merchantHashKey : String = hashKey
-
+    var orderIdAndStoreId : String = orderIdAndStoreId
     override fun doInBackground(vararg params: String): String? {
 
         trustEveryone()
@@ -66,6 +66,7 @@ class HttpTask2(hashKey: String, callback: (String?) -> Unit) : AsyncTask<String
         httpClient.connectTimeout = TIMEOUT
         httpClient.requestMethod = params[0]
         httpClient.setRequestProperty("Authorization", merchantHashKey)
+        httpClient.setRequestProperty("X-Resource-AnalyticsId", orderIdAndStoreId)
 
         if (params[0] == "POST") {
             httpClient.instanceFollowRedirects = false

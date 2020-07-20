@@ -1,8 +1,10 @@
 package telenor.com.ep_v1_sdk.ui.activities
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.util.Log
 import android.view.View
@@ -11,19 +13,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_form_main.*
-import kotlinx.android.synthetic.main.ll_form_cc.*
-import kotlinx.android.synthetic.main.ll_top_view.*
 import org.json.JSONObject
 import telenor.com.ep_v1_sdk.R
 import telenor.com.ep_v1_sdk.config.*
 import telenor.com.ep_v1_sdk.config.model.*
 import telenor.com.ep_v1_sdk.rest.HttpTask
 import telenor.com.ep_v1_sdk.rest.HttpTask2
-import telenor.com.ep_v1_sdk.ui.*
-import telenor.com.ep_v1_sdk.ui.fragment.*
+import telenor.com.ep_v1_sdk.ui.CardResponseCallback
+import telenor.com.ep_v1_sdk.ui.EasypayCall
+import telenor.com.ep_v1_sdk.ui.FeedBackCall
+import telenor.com.ep_v1_sdk.ui.StopHandlerCallback
+import telenor.com.ep_v1_sdk.ui.fragment.EasypayPaymentCC
+import telenor.com.ep_v1_sdk.ui.fragment.EasypayPaymentDD
+import telenor.com.ep_v1_sdk.ui.fragment.EasypayPaymentMA
+import telenor.com.ep_v1_sdk.ui.fragment.EasypayPaymentOTC
 import telenor.com.ep_v1_sdk.util.ActivityUtil
 import telenor.com.ep_v1_sdk.util.InternetHelper
 import telenor.com.ep_v1_sdk.util.Validation
@@ -55,6 +60,12 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 //    var transactionVerified  = false
     var mpgsReattempt : Boolean = false
     lateinit var paymentCCCardResponse: PaymentCCCardResponse
+
+    lateinit var toolbarTimer : TextView
+    var timeRemainingMillis : Long = 0
+    val countDownInterval:Long = 1000
+    lateinit var timeRemaining : String
+    lateinit var hashKey: String
 
     companion object{
         lateinit var obj : FeedBackCall
@@ -102,12 +113,17 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 //        }
     }
     private fun initView(){
+
+        timeRemainingMillis = intent.getLongExtra("timer_time", 0) as Long
+
         //setting toolbar
         setHeadingTitle(resources.getString(R.string.easypaisa_wallet))
 
+        timer(timeRemainingMillis, countDownInterval).start()
         storeConfig = intent.getSerializableExtra(CONFIGURATION) as EPConfiguration
         paymentOrder = intent.getSerializableExtra(PAYMENTORDER) as EPPaymentOrder
         merchantAccountId = intent.getStringExtra(MERCHANTACCOUNTID) as String
+        hashKey = intent.getStringExtra("hash_key") as String
 
         setStoreDetails(storeConfig,paymentOrder)
         handler = Handler()
@@ -126,7 +142,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
                 initDD()
             }
         }
-        getCharityPackages()
+        getCharityPackages(hashKey , paymentOrder.orderId + storeConfig.storeId )
     }
     private fun initMA() {
 
@@ -1150,11 +1166,11 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
     }
 
 
-    private fun getCharityPackages() {
+    private fun getCharityPackages(hashKey: String, orderIdAndStoreId: String) {
         val json = JSONObject()
         if(InternetHelper().isInternetConnected(this)) {
 
-            HttpTask2(storeConfig.secretKey) {
+            HttpTask2(hashKey , orderIdAndStoreId) {
                 if (it == null) {
                     Toast.makeText(this, "Something went Wrong", Toast.LENGTH_LONG).show()
                     return@HttpTask2
@@ -1206,6 +1222,7 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
 
         val toolbar = findViewById<Toolbar>(R.id.mainToolbar_payment_form)
         val mTitle = toolbar.findViewById(R.id.toolbar_title_payment_form) as TextView
+        toolbarTimer = toolbar.findViewById(R.id.toolbar_timer__payment_form) as TextView
         mTitle.text = title
         mTitle.setTypeface(null, Typeface.BOLD)
         setSupportActionBar(toolbar)
@@ -1217,6 +1234,62 @@ class EasypayPaymentForm  : AppCompatActivity(), EasypayCall, CardResponseCallba
                 onBackPressed()
             }
         })
+
+    }
+
+    private fun timer(millisInFuture:Long,countDownInterval:Long): CountDownTimer {
+        return object: CountDownTimer(millisInFuture,countDownInterval){
+            override fun onTick(millisUntilFinished: Long){
+                timeRemaining = timeString(millisUntilFinished)
+                toolbarTimer.text = timeRemaining.toString()
+            }
+
+            override fun onFinish() {
+                toolbarTimer.text = timeString(0)
+                showTimeExpiredDialog()
+                //Toast.makeText(applicationContext, "Time Expired", Toast.LENGTH_LONG).show()
+
+            }
+        }
+    }
+
+    // Method to get days hours minutes seconds from milliseconds
+    private fun timeString(millisUntilFinished:Long):String{
+        var millisUntilFinished:Long = millisUntilFinished
+
+        val second = millisUntilFinished / 1000 % 60
+        val minutes = millisUntilFinished / (1000 * 60) % 60
+
+        return String.format("%02d", minutes) + ":" + String.format("%02d", second)
+
+    }
+
+    private fun showTimeExpiredDialog(){
+
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(this)
+
+        // Set the alert dialog title
+        builder.setTitle("Session time expired.")
+        builder.setCancelable(false)
+
+        // Set a positive button and its click listener on alert dialog
+        builder.setPositiveButton("Ok"){dialog, which ->
+
+            //dialog.dismiss()
+            val intent = Intent("finish_activity")
+            sendBroadcast(intent)
+            this.finish()
+
+        }
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        if (!isFinishing) {
+            dialog.show()
+        }
 
     }
 

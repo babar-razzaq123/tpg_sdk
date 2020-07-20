@@ -116,6 +116,75 @@ class Validation{
         return decrypted
     }
 
+    fun decryptHashKey(hashKey: String , orderId: String, storeId: String): String {
+
+        var key = orderId + storeId
+        if (key.length === 16) {
+//            opsDecrypted = decrypt(key,hashKey);
+//            return opsDecrypted;
+            //
+            var decrypted = ""
+            var output: ByteArray? = null
+            try {
+
+
+                val skey = SecretKeySpec(key.toByteArray(), "AES")
+                val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
+                cipher.init(Cipher.DECRYPT_MODE, skey)
+                output =
+                    cipher.doFinal(android.util.Base64.decode(hashKey, android.util.Base64.DEFAULT))
+                decrypted = String(output)
+            } catch (e: Exception) {
+                println(e.toString())
+            }
+
+            return decrypted
+            //
+        } else {
+            while (key.length < 16) {
+                key = key + "xEuGlK";
+                if (key.length > 16) {
+                    key = key.substring(0, key.length - (key.length - 16));
+                    break;
+                }
+            }
+            if (key.length > 16) {
+                key = key.substring(0, key.length - (key.length - 16));
+            }
+            if (key.length === 16) {
+                //opsDecrypted = Cipher.decrypt(key,encryptedhashfromservice);
+                //opsDecryptedFInal = opsDecrypted.substring(0,16);
+                //
+                var decrypted = ""
+                var output: ByteArray? = null
+                try {
+
+
+                    val skey = SecretKeySpec(key.toByteArray(), "AES")
+                    val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
+                    cipher.init(Cipher.DECRYPT_MODE, skey)
+                    output = cipher.doFinal(
+                        android.util.Base64.decode(
+                            hashKey,
+                            android.util.Base64.DEFAULT
+                        )
+                    )
+                    decrypted = String(output)
+                } catch (e: Exception) {
+                    println(e.toString())
+                }
+
+                return decrypted
+                //
+            }
+        }
+
+        //
+        return ""
+    }
+        //
+
+
     fun isEmailValid(email: String): Boolean {
 
 

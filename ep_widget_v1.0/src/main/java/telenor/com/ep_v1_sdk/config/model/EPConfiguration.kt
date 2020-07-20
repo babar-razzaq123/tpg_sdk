@@ -10,5 +10,6 @@ data class EPConfiguration(
     var expiryToken: String,
     var bankIdentifier: String,
     var baseUrl: String,
-    var isEditable: Boolean
+    var isEditable: Boolean,
+    var specificPaymentMethod: String?
 ): Serializable

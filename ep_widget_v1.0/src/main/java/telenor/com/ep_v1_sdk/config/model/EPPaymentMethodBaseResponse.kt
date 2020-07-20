@@ -10,6 +10,7 @@ data class PaymentMethodBaseResponse(
 
 data class Content (
 
+    val timeStamp : String,
     val hashKey : String,
     val orderId : String,
     val email : String,
